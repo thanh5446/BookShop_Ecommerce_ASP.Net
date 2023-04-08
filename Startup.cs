@@ -1,5 +1,9 @@
 ﻿
 
+using AspNetCoreHero.ToastNotification;
+using Assignment.DataAccess;
+using Microsoft.EntityFrameworkCore;
+
 namespace WebApplication4
 {
 	public class Startup
@@ -19,8 +23,16 @@ namespace WebApplication4
             {
                 routeOptions.LowercaseUrls = true;
             });
-                services.AddControllersWithViews();
-            }
+                services.AddControllersWithViews().AddRazorRuntimeCompilation();
+                services.AddNotyf(config =>
+                {
+                    config.DurationInSeconds = 10;
+                    config.IsDismissable = true;
+                    config.Position = NotyfPosition.BottomRight;
+                });
+            services.AddDbContext<BookShopDbContext>(options => options.UseSqlServer(
+                Configuration.GetConnectionString("BookShopConnection")));
+        }
 
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             public void Configure(WebApplication app, IWebHostEnvironment env)
@@ -36,19 +48,18 @@ namespace WebApplication4
                 app.UseStaticFiles();
 
                 app.UseRouting();
+                
 
                 app.UseAuthorization();
 
-                app.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+               
 
                 app.UseEndpoints(endpoints =>
                 {
-                    // Thêm endpoint chuyển đến các trang Razor Page
-                    // trong thư mục Pages
-                    endpoints.MapRazorPages();
+                    endpoints.MapControllerRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 });
+               app.Run();
         }
     }
     

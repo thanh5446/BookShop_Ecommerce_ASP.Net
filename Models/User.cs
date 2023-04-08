@@ -35,12 +35,14 @@ namespace Assignment.Models
 
         [Required(ErrorMessage = "Location cannot be empty !!")]
         [StringLength(50)]
-        public string Location { set; get; }
+        public string Address { set; get; }
 
         [Required(ErrorMessage = "Role cannot be empty !!")]
         [StringLength(50)]
         public string Role { set; get; }
 
         public string? Avatar { set; get; }
+
+        public virtual List<Order> Order { get; set; }
     }
 }

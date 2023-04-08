@@ -23,5 +23,7 @@ namespace Assignment.Models
 
         [StringLength(250)]
         public string? Description { set; get; }
+
+        public virtual List<Book> Books { get; set; }
     }
 }

@@ -11,9 +11,25 @@ build_property.RootNamespace = Assignment
 build_property.ProjectDir = D:\studying\Application_development\code\Assignment\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = D:\studying\Application_development\code\Assignment
 build_property._RazorSourceGeneratorDebug = 
+
+[D:/studying/Application_development/code/Assignment/Areas/Shop/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xIb21lXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/studying/Application_development/code/Assignment/Areas/Shop/Views/Shared/_ShopLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xTaGFyZWRcX1Nob3BMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/studying/Application_development/code/Assignment/Areas/Shop/Views/Shared/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xTaGFyZWRcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/studying/Application_development/code/Assignment/Areas/Shop/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
 
 [D:/studying/Application_development/code/Assignment/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
