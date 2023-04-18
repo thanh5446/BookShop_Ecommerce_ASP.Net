@@ -1,0 +1,82 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@model IPagedList<Assignment.Models.Book>
+@{
+    ViewData["Title"] = "Shop";
+}
+<div class="box-products">
+    <div class="row">
+        <div class="sidebar-actions">
+            @using (Html.BeginForm("ListProduct", "Home", FormMethod.Get))
+            {
+                <p>
+                    Category: @Html.DropDownList("categoryId", (SelectList)ViewBag.CategoryList, "-- All Categories --")
+                    Sorting by price: @Html.DropDownList("sortPrice",(SelectList)ViewBag.PriceSort, "--Sorting by Price")
+                    <input type="submit" value="Filter" />
+                </p>
+            }
+        </div>
+    </div>
+
+    <div class="list-books">
+        <section class="product1 section-p1">
+            <h2>Featured Products</h2>
+            <p>Books with high quality reviews from customers</p>
+            <div class="pro-container">
+                @if (Model != null)
+                {
+                    @foreach (var book in Model)
+                    {
+                        <div class="pro">
+                            <img src="~/images/products/@book.Image" />
+                            <div class="infor">
+                                <span>Category: 
+                                    @foreach (var item in ViewBag.NameCategory)
+                                    {
+                                        if (book.CategoryID == item.ID)
+                                        {
+                                            @item.Name
+                                        }
+                                    }
+                                </span>
+                                <h5>@book.Name</h5>
+                                <div class="star">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <h4>$@book.Price</h4>
+                            </div>
+
+                             @* @using (Html.BeginForm("ViewDetail", "Home", new {id = book.ID})){
+                                <input type="button" class="new-button" value="View Detail"/>
+                            }*@
+                           @* <a class="new-button" href="@Url.Action("ViewDetail","Home", new {id=book.ID})">View Detail</a>*@
+                           <form asp-action="ViewDetail" asp-controller="Home" asp-route-id="@book.ID" method="get">
+                               <button class="new-button">View Detail</button>
+                           </form>
+                        </div>
+                    }
+                }else{
+                    <p>No found record </p>
+                }              
+            </div>
+        </section>
+  </div>
+      <div class="container">
+        <div class="row">
+            <div class="col-md12">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("ListProduct","Home", new { page = page, categoryId = ViewBag.categoryId,
+                sortPrice= ViewBag.SortPrice}))
+            </div>
+        </div>
+      </div>
+</div>
+
+
+
+
+

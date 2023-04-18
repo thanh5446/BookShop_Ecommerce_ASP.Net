@@ -1,0 +1,52 @@
+﻿@model Assignment.Models.Category
+
+@{
+    ViewData["Title"] = "Category updating";
+    Layout = "~/Areas/Shop/Views/Shared/_Shop2Layout.cshtml";
+}
+
+<div class="col-9 grid-margin stretch-card" style="margin-left: 200px; margin-top: 100px;">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="text-info text-center">@Model.Name</h4>
+            <p class="card-description"> Update information below </p>
+
+            @using (Html.BeginForm("EditCategory", "Category", new { area = "Shop" }, FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.ID)
+                @Html.HiddenFor(x => x.Name)
+                @Html.AntiForgeryToken()
+                <div class="forms-sample">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Alias, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Alias, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Alias, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Status,ViewBag.Status as SelectList, "***Select Status***", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                </div>
+            }
+
+        </div>
+        <form asp-area="Shop" asp-controller="Category" asp-action="Index" method="post">
+            <button type="submit" class="btn btn-primary" style="width:100%">Cancel</button>
+        </form>
+    </div>
+</div>
+

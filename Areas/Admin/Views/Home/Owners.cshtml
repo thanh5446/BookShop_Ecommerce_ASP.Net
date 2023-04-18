@@ -1,0 +1,89 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@model IPagedList<Assignment.DataAccess.AppUser>
+
+@{
+    ViewData["Title"] = "Shop Owner Page";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@*<div class="main-panel">*@
+<div class="content-wrapper">
+    <div class="row">
+        <div class="d-flex mb-3">
+            <div class="me-auto p-2">
+                <form asp-area="Admin" asp-controller="Home" asp-action="Owners">
+                    <div class="input-group">
+                        <div class="form-outline">
+                            <input type="search" name="search" id="form1" class="form-control" placeholder="Search book" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-112 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Book Table</h4>
+                    <table class="table table-striped" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th> ID</th>
+                                <th> Name Customer </th>
+                                <th> Email </th>
+                                <th> Phone Number</th>
+                                <th style="text-align:center"> Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                @foreach (var order in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @order.Id
+                                        </td>
+                                        <td> @order.FullName </td>
+                                        <td>@order.Email</td>
+                                        <td> <label class="alert alert-infor">@order.PhoneNumber</label></td>
+                                        <td class="d-flex justify-content-center" style="padding:25px 0px">
+                                            <a style="height:fit-content" href="@Url.Action("ChangePassword","Home", new{id = order.Id})" type="button"
+                                       class="btn btn-gradient-success btn-rounded btn-block">Change Password</a>
+                                            @using (Html.BeginForm("RemoveConfirmed", "Home", new { id = order.Id }, FormMethod.Post))
+                                            {
+                                                <input type="submit" class="btn btn-gradient-warning btn-rounded btn-block"
+                                           onclick="return confirm('Are you sure you want to remove?')" value="Remove" />
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>No record found</tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md12">
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Owners","Home", new { page = page, search = ViewBag.StoredSearch}))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

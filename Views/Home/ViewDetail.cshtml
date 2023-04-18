@@ -1,0 +1,79 @@
+﻿@model Assignment.Models.Book
+
+@{
+    ViewData["Title"] = "Detail Product";
+}
+
+<div class="product_container">
+    <div class="product_img_section">
+        <div class="product_img_main">
+          <img src="~/images/products/@Model.Image" class="img_detail" />
+
+        </div>     
+    </div>
+    <div class="product_content">
+        <h3 class="product_label">Detailed Product</h3>
+        <h2 class="product_title">@Model.Name</h2>
+        <h5 class="Author">@Model.Author<span class="for-author"> (Author)</span></h5>
+
+        <div class="product-rating">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-half-line"></i>
+            <span>4.8(32)</span>
+        </div>
+        <div class="product-price">
+            <p class="product_price old_price">
+                Old Price: <span class="price_amount">
+                    $@Model.Price </span>
+                    <p class="product_price new_price">New Price: <span class="price_amount">@Model.DiscountPrice </span>
+        </div>
+        <div class="product-detail">
+            <h2 class="product_description"> Product Desription:</h2>
+            <p class="product_description_txt">@Model.Description</p>
+            <ul class="product_quantity">
+                <li class="d-flex align-items-center"> <i class="fa-solid fa-circle-check"></i>
+                    Available: <input type="number" class="form-control form-control-sm product_goal"
+                    value="@Model.Quantity" disabled style="width:60px"></li>
+                <li>
+                    <i class="fa-solid fa-circle-check"></i>Category: <span class="product_goal">
+                        @foreach (var item in ViewBag.NameCategory)
+                        {
+                            if (Model.CategoryID == item.ID)
+                            {
+                                @item.Name
+                            }
+                        }
+                    </span>
+                </li>
+                <li><i class="fa-solid fa-circle-check"></i>Shipping Area: <span class="product_goal">In Viet Nam.</span></li>
+                <li><i class="fa-solid fa-circle-check"></i>Shipping Fee: <span class="product_goal">Depend on area.</span></li>
+            </ul>
+        </div>
+        <div class="show_func_btn">
+            @using (Html.BeginForm("AddToCart", "MyCart", new { id = @Model.ID }, FormMethod.Get))
+            {
+                <input type="submit" class="new-button" value="Add To Cart" />
+            }
+        </div>
+     </div>
+ </div>
+     
+<div class="list-books">
+        <section class="product1 section-p1">
+            <h2>Related Products</h2>
+            <div class="pro-container">
+            @if (ViewBag.RelatedProducts != null)
+                {
+                @foreach (var book in ViewBag.RelatedProducts)
+                    {
+                      <partial name="_product" model="book" />
+                    }
+                }else{
+                    <p> There is no related product</p>
+                }
+            </div>
+        </section>
+</div>

@@ -19,11 +19,11 @@ namespace Assignment.Models
 
         [Required(ErrorMessage = "Status cannot be empty !!")]
         [StringLength(50)]
-        public string Status { set; get; }
+        public string Status { set; get; } = "Processing";
 
         [StringLength(250)]
         public string? Description { set; get; }
 
-        public virtual List<Book> Books { get; set; }
+        public virtual List<Book>? Books { get; set; } = new List<Book>();
     }
 }

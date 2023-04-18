@@ -1,0 +1,116 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@model IPagedList<Assignment.Models.Book>
+
+@{
+    ViewData["Title"] = "Book Index";
+    Layout = "~/Areas/Shop/Views/Shared/_ShopLayout.cshtml";
+}
+
+@*<div class="main-panel">*@
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="d-flex mb-3">
+                <div class="me-auto p-2">
+                <form asp-area="Shop" asp-controller="Product" asp-action="Index">
+                    <div class="input-group">
+                        <div class="form-outline">
+                            <input type="search" name="search" id="form1" class="form-control" placeholder="Search book" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                </div>
+                <div class="p-2">
+                    <form asp-area="Shop" asp-controller="Product" asp-action="AddProduct" method="post">
+                        <button type="submit" class="btn btn-primary">Add a new product</button>
+                    </form> 
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="sidebar-actions">
+            @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+            {
+                <p style="align-content:center">
+                    @Html.DropDownList("status", (SelectList)ViewBag.StatusList, "--Sorting by Status--",new { @class = "btn btn-danger dropdown-toggle text-center" })
+                    @Html.DropDownList("sortPrice",(SelectList)ViewBag.PriceSort, "--Sorting by Price--", new { @class = "btn btn-danger dropdown-toggle" })
+                    <input type="submit" class="btn btn-gradient-primary" value="Filter" />
+                </p>
+            }
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Book Table</h4>
+                      
+                        <table class="table table-striped" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th> ID </th>
+                                    <th> Product Name </th>
+                                    <th> Image </th>
+                                    <th> Price </th>
+                                    <th> Quantity </th>
+                                    <th> Status</th>
+                                    <th style="text-align:center"> Action</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    @foreach (var book in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @book.ID
+                                            </td>
+                                            <td> @book.Name </td>
+                                            <td>
+                                                <img src="~/images/products/@book.Image" style=" border-radius:1%"  />
+                                            </td>
+                                            <td>
+                                                @if(@book.DiscountPrice == null){
+                                                    @book.Price
+                                                }else{
+                                                    @book.DiscountPrice
+                                                }
+                                            </td>
+                                            <td>@book.Quantity</td>
+                                            <td> <label class="badge badge-danger">@book.Status</label></td>
+                                            <td class="d-flex justify-content-center" style="gap:20px">
+                                                <a href="@Url.Action("UpdateProduct","Product",new {id = book.ID})" type="button" class="btn btn-gradient-success btn-rounded btn-block">Edit</a>
+                                                @using (Html.BeginForm("RemoveConfirmed", "Product", new { id = book.ID }, FormMethod.Post))
+                                                {
+                                                    <input type="submit" class="btn btn-gradient-warning btn-rounded btn-block"
+                                               onclick="return confirm('Are you sure you want to remove?')" value="Remove" />
+                                                }
+                                        </tr>
+                                    }
+                                }else{
+                                    <tr>No record found</tr>
+                                }
+                            </tbody>
+                        </table>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md12">
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index","Product", new { page = page, status = ViewBag.StoredStatus, sortNew = ViewBag.StoredPrice }))
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+

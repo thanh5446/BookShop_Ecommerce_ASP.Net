@@ -1,0 +1,21 @@
+﻿@using Assignment.Models
+@model Book
+                        <div class="pro">
+                            <img src="~/images/products/@Model.Image" />
+                            <div class="infor">
+                                <span>Author: @Model.Author
+                                </span>
+                                <h5>@Model.Name</h5>
+                                <div class="star">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <h4>$@Model.Price</h4>
+                            </div>
+                           <form asp-action="ViewDetail" asp-controller="Home" asp-route-id="@Model.ID" method="get">
+                               <button class="new-button">View Detail</button>
+                           </form>
+                        </div>

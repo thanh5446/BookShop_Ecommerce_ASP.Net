@@ -2212,6 +2212,21 @@ progress {
   max-width: 100%;
   height: auto; }
 
+  .pagination li {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    cursor: pointer
+}
+
+.pagination li:hover{
+    background-color: #c6c9cd;
+}
+
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #fff;

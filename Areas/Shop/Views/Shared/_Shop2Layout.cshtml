@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Assignment</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/shop/css/style.css" asp-append-version="true" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body style=" background-color: #828082;">
+    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo" asp-area="Shop" asp-controller="Home" asp-action="Index"> <img src="~/shop/images/logo.svg" alt="logo"/> </a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="~/shop/images/logo-mini.svg" alt="logo" /></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                <span><i class="fa-solid fa-bars"></i></span>
+            </button>
+            <div class="search-field d-none d-md-block">
+                <form class="d-flex align-items-center h-100" action="#">
+                    <div class="input-group">
+                        <div class="input-group-prepend bg-transparent">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                    </div>
+                </form>
+            </div>
+            <ul class="navbar-nav navbar-nav-right" style="margin-right: 100px;">
+                <li class="nav-item nav-profile dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" href="#" data-bs-toggle="dropdown"
+                       aria-expanded="false" style="padding-right: 25px;">
+                        <div class="nav-profile-img">
+                            <img src="~/shop/images/faces/face1.jpg" alt="image">
+                            <span class="availability-status online"></span>
+                        </div>
+                        <div class="nav-profile-text">
+                            <p class="mb-1 text-black">Thien Nguyen</p>
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    @RenderBody()
+
+    <footer class="footer">
+        <div class="container-fluid d-flex justify-content-between">
+            <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © bootstrapdash.com 2021</span>
+            <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin template</a> from Bootstrapdash.com</span>
+        </div>
+    </footer>
+    <!-- partial -->
+    </div>
+
+    <script src="./~/shop/vendors/js/vendor.bundle.base.js"></script>
+
+    <script src="./~/shop/js/hoverable-collapse.js"></script>
+    <script src="./~/shop/js/misc.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+    @await Component.InvokeAsync("Notyf")
+  
+    <!-- endinject -->
+</body>
+</html>

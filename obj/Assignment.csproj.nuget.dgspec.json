@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\studying\\Application_development\\code\\Assignment\\Assignment.csproj": {}
+    "D:\\studying\\Application_development\\Assignment\\Assignment\\Assignment.csproj": {}
   },
   "projects": {
-    "D:\\studying\\Application_development\\code\\Assignment\\Assignment.csproj": {
+    "D:\\studying\\Application_development\\Assignment\\Assignment\\Assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\studying\\Application_development\\code\\Assignment\\Assignment.csproj",
+        "projectUniqueName": "D:\\studying\\Application_development\\Assignment\\Assignment\\Assignment.csproj",
         "projectName": "Assignment",
-        "projectPath": "D:\\studying\\Application_development\\code\\Assignment\\Assignment.csproj",
+        "projectPath": "D:\\studying\\Application_development\\Assignment\\Assignment\\Assignment.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\studying\\Application_development\\code\\Assignment\\obj\\",
+        "outputPath": "D:\\studying\\Application_development\\Assignment\\Assignment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,6 +44,30 @@
               "target": "Package",
               "version": "[1.1.0, )"
             },
+            "Google.Apis.Core": {
+              "target": "Package",
+              "version": "[1.60.0, )"
+            },
+            "Microsoft.AspNet.Identity.EntityFramework": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[4.0.40804, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Certificate": {
+              "target": "Package",
+              "version": "[6.0.15, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.15, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[6.0.15, )"
+            },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[6.0.15, )"
@@ -65,6 +89,22 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.13, )"
+            },
+            "PagedList": {
+              "target": "Package",
+              "version": "[1.17.0, )"
+            },
+            "PagedList.Core.Mvc": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "PagedList.Mvc": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "X.PagedList.Mvc.Core": {
+              "target": "Package",
+              "version": "[8.4.7, )"
             }
           },
           "imports": [

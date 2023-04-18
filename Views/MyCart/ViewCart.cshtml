@@ -1,0 +1,243 @@
+﻿@model List<Assignment.Models.DBO.CartViewModel>
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+font-size: 1rem;
+line-height: 2.15;
+padding-left: .75em;
+padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+top: 13px;
+}
+
+.bg-grey {
+background-color: #eae8e8;
+}
+
+    .checkmark {
+        position: relative;
+        top: 0;
+        left: 45px;
+        width: 320px;
+        background-color: #eee;
+        border-radius: 5%;
+    }
+    image{
+        object-fit: cover;
+    }
+</style>
+
+<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+                <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <div class="col-lg-8">
+                                <div class="p-5">
+                                    <div class="row" style="color:red">
+                                        @if (TempData["msg"] != null)
+                                        {
+                                            string alertType = "alert alert-" + TempData["alertType"];
+                                            <div class="@alertType">
+                                                <strong>Alert!</strong> @TempData["msg"]
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-5">
+                                        <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                                        <h6 class="mb-0 text-muted">1 items</h6>
+                                    </div>
+                                    @if (Model.Count == 0)
+                                    {
+                                        <hr class="my-4">
+
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                        <p>Your cart is empty.</p>
+                                        </div>
+                                    }else{
+                                        @foreach (var item in Model)
+                                        {
+                                            <hr class="my-4">
+                                             <form asp-action="UpdateQuantity" asp-controller="MyCart" method="post">
+                                            <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                                <div class="col-md-2 col-lg-2 col-xl-2">
+                                                    <img src="~/images/products/@item.ImageUrl"
+                                                 class="img-fluid rounded-3" alt="Cart Item">
+                                                </div>
+                                                <div class="col-md-3 col-lg-3 col-xl-3">
+                                                    <h6 class="text-muted">@item.Author</h6>
+                                                    <h6 class="text-black mb-0">@item.ProductName</h6>
+                                                </div>
+                                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">           
+                                                    <button class="btn btn-link px-2" type="submit"
+                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                        <i class="fas fa-minus"></i>
+                                                    </button> 
+                                                    <input type="hidden" name="id" value="@item.ProductId">
+                                                    <input id="form1" min="1" max="@item.AvailableNum" name="quantity" value="@item.Quantity" type="number"
+                                                   class="form-control form-control-sm" />
+                                                    <button class="btn btn-link px-2"
+                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()" type="submit">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>                               
+                                                </div>
+                                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">                                          
+                                                    <h6 class="mb-0"> $@((item.Price * item.Quantity).ToString("0.##"))</h6>
+                                                </div>
+                                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                        <a asp-action="RemoveFromCart" asp-controller="MyCart" asp-route-id="@item.ProductId"
+                                                    class="text-muted"><i class="fas fa-times"></i></a>
+                                                </div>
+                                               
+                                            </div>
+                                            </form>
+                                        }
+
+                                    }
+
+                                    <hr class="my-4">
+
+                                    <div class="pt-5">
+                                        <h6 class="mb-0 d-flex">
+                                            <a asp-action="ListProduct" asp-controller="Home" class="text-body p2">
+                                                <i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop
+                                            </a>    
+                                            <a asp-action="Clear" asp-controller="MyCart" type="button" 
+                                            class="btn btn-dark btn-block btn-lg ms-auto p-2"
+                                                    data-mdb-ripple-color="dark">
+                                                Clear Cart
+                                            </a>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 bg-grey">
+                                <div class="p-5">
+                                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                    <hr class="my-4">
+
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <h5 class="text-uppercase">Total product:</h5>
+                                        @if(Model.Sum(item => item.Quantity) == 1){
+                                            <h5>@Model.Sum(item => item.Quantity) product</h5>
+                                        }else{
+                                            <h5>@Model.Sum(item => item.Quantity) products</h5>
+                                        }                              
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <h5 class="text-uppercase">Total price:</h5>
+                                        <h5>$@Model.Sum(item => item.Price * item.Quantity).ToString("0.##")</h5>
+                                    </div>
+                                    <hr class="my-4">
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <h5 class="text-uppercase">Shipping</h5>
+                                        <h5>Free (event in week)</h5>
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-4">
+            <div class="card p-3">
+                <p class="mb-0 fw-bold h4" style="text-align:center">Payment Methods</p>
+            </div>
+        </div>
+        <form asp-action="Perform" asp-controller="MyCart">
+        <div class="radio-container d-flex">
+            <div class="col-lg-4 mb-lg-0 mb-3">
+                <div class="card p-3" style="height:280px">
+                    <input type="radio" name="payment" value="MasterCard">
+                    <span class="checkmark">
+                        <img src="~/images/mastercard.jpg" alt="Option 1">
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-lg-0 mb-3">
+                <div class="card p-3" style="height:280px">
+                        <input type="radio" name="payment" value="Paypal">
+                    <span class="checkmark">
+                        <img src="~/images/Paypal.png" alt="Option 1">
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-lg-0 mb-3">
+                <div class="card p-3" style="height:280px">
+                        <input type="radio" name="payment" value="Visa">
+                    <span class="checkmark">
+                        <img src="~/images/Visa2.jpg" alt="Option 1">
+                    </span>
+                </div>
+            </div>
+        </div>
+
+            <input type="hidden" name="total" value="@Model.Sum(item => item.Price * item.Quantity)" />
+            <input type="hidden" name="userId" value="@ViewBag.Account.Id" />
+
+            <div class="col-12">
+            <div class="card p-3">
+                <p class="mb-0 fw-bold h4" style="text-align:center">Information Customer</p>
+
+                <div class="row mt-3">
+                    <div style="margin-bottom: 24px;" class="col-md-12">
+                        <label class="labels">Full name</label>
+                        <input  type="text" class="form-control" value="@ViewBag.Account.FullName" disabled>
+                    </div>
+                    <div style="margin-bottom: 24px;" class="col-md-12">
+                        <label class="labels">Home address</label>
+                        <input type="text" class="form-control" value="@ViewBag.Account.Location" disabled>
+                    </div>
+                    <div style="margin-bottom: 24px;" class="col-md-12">
+                        <label class="labels">Email</label>
+                        <input type="text" class="form-control" value="@ViewBag.Account.Email" disabled>
+                    </div>
+                    <div style="margin-bottom: 24px;" class="col-md-12">
+                        <label class="labels">Phone Number</label>
+                        <input type="text" class="form-control" value="@ViewBag.Account.PhoneNumber" disabled>
+                    </div>
+                    <div style="margin-bottom: 24px;" class="col-md-12">
+                        <label for="note">Note:</label>
+                        <textarea class="form-control" name="note" id="note"></textarea>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <span>
+                            if your information is
+                            not correct, please edit below
+                        </span>
+                        <br />
+                        <a class="btn btn-primary profile-button"
+                           type="submit" asp-action="EditProfile" asp-controller="Account">Edit Information</a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+                 <button asp-action="PerformOrder" asp-controller="MyCart" type="submit" class="btn btn-dark btn-block btn-lg"
+                data-mdb-ripple-color="dark">
+                Checkout
+                </button>
+        </div>
+        </form>
+        
+    </div>
+</div>

@@ -1,14 +1,26 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Assignment.DataAccess
+
+@inject SignInManager<AppUser> SignInManager
+@{
+    var userName = SignInManager.UserManager.Users.ToString();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Assignment</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
     <link href="~/css/site.css" asp-append-version="true" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <body>
+  
     <div class="site">
         <header>
             <div class="header-top mobile-hide">
@@ -24,8 +36,20 @@
                         <div class="right">
                             <ul class="flex-item">
                                 <li class="main-links">
-                                <li><a href="#">Sign up</a></li>
-                                <li><a href="#">My account</a></li>
+                                @if (!SignInManager.IsSignedIn(User)){
+                                    <li><a asp-action="Register" asp-controller="Account">Sign up</a></li>
+                                    <li><a asp-action="Login" asp-controller="Account">Sign in </a></li>                                   
+                                }
+                                else
+                                {
+                                <li>Hello @User.Identity.Name</li>
+                                <li><a asp-action="ViewProfile" asp-controller="Account">Profile </a></li>
+                                    <li><a asp-action="Logout" asp-controller="Account">Logout </a></li>
+                                        @if (User.IsInRole("Shop"))
+                                        {
+                                        <li><a asp-area="Shop" asp-action="Index" asp-controller="Home">Shop Management </a></li>
+                                        }
+                                }
                                 <li>
                                     <a href="#">English <span class="icon-small"><i class="ri-arrow-down-s-line"></i></span></a>
                                     <ul>
@@ -47,17 +71,18 @@
                     <div class="wrapper flex-item">
                         <a href="#" class="trigger desktop-hide"><span class="i ri-menu-2-line"></span></a>
                         <div class="left flex-item">
-                            <div class="logo"><a href=""><span class="circle">WPFStore</span></a></div>
+                            <div class="logo"><a asp-action="ListProduct" asp-controller="Home" style="cursor:pointer">
+                                <span class="circle">WPFStore</span></a></div>
                             <nav class="mobile-hide">
                                 <ul class="flex-item second-links">
-                                    <li><a href="#">Home</a></li>
+                                    <li><a asp-action="Index" asp-controller="Home">Home</a></li>
                                     <li>
-                                        <a href="#">
+                                        <a asp-action="ListProduct" asp-controller="Home">
                                             Shop
                                             <div class="icon-small"><i class="ri-arrow-down-s-sline"></i></div>
                                         </a>
                                     </li>
-                                    <li><a href="#">New Book</a></li>
+                                    <li><a asp-action="GetNewProducts" asp-controller="Home">New Book</a></li>
                                     <li><a href="#">About us</a></li>
                                 </ul>
                             </nav>
@@ -71,7 +96,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="iscart">
+                                    <a asp-action="ViewCart" asp-controller="MyCart" class="iscart">
                                         <div class="icon-large">
                                             <i class="ri-shopping-cart-line"></i>
                                         </div>
@@ -156,9 +181,9 @@
                         </div>
                         <div class="right">
                             <div class="search-box">
-                                <form action="" class="search">
+                                <form asp-action="ListProduct" asp-controller="Home" class="search" method="get">
                                     <span class="icon-large"><i class="ri-search-line"></i></span>
-                                    <input type="search" placeholder="Search for products">
+                                    <input type="search" placeholder="Search for products" name="search">
                                     <button type="submit">Search</button>
                                 </form>
                             </div>
@@ -172,11 +197,43 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Assignment - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    <div class="footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">E-commerce</a></li>
+                            <li><a href="#">Book Shop</a></li>
+                            <li><a href="#">Delivery Goods</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>About Us</h3>
+                        <ul>
+                            <li><a href="#">Team Member</a></li>
+                            <li><a href="#">Business</a></li>
+                            <li><a href="#">Policies</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Category</h3>
+                        <ul>
+                            <li><a href="#">Fiction Book</a></li>
+                            <li><a href="#">Romantic Book</a></li>
+                            <li><a href="#">Thrilling Book</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 item social">
+                        <a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a>
+                        <a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                        <p class="copyright">Book Shop E-commerce © 2023</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

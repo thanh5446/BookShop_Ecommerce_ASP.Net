@@ -1,0 +1,104 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@model IPagedList<Assignment.Models.Order>
+
+@{
+    ViewData["Title"] = "Order Index";
+    Layout = "~/Areas/Shop/Views/Shared/_ShopLayout.cshtml";
+}
+
+
+
+@*<div class="main-panel">*@
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="d-flex mb-3">
+                <div class="me-auto p-2">
+                    <div class="input-group">
+                        <div class="form-outline">
+                            <input type="search" id="form1" class="form-control" placeholder="Search product" />
+                        </div>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="sidebar-actions">
+                @using (Html.BeginForm("Index", "Order", FormMethod.Get))
+                {
+                    <p style="align-content:center">
+                    @Html.DropDownList("status", (SelectList)ViewBag.StatusList, "--Sorting by Status--",new { @class = "btn btn-danger dropdown-toggle text-center" })
+                    @Html.DropDownList("sortNew",(SelectList)ViewBag.NewSort, "--Sorting by Time--", new { @class = "btn btn-danger dropdown-toggle" })
+                    <input type="submit" class="btn btn-gradient-primary" value="Filter" />
+                    </p>
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-112 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Book Table</h4>
+                        <table class="table table-striped" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th> ID</th>
+@*                                    <th> Name Customer </th>*@
+                                    <th> Order Date </th>
+                                    <th> Status </th>
+                                    <th> Total </th>
+                                    <th> Payment Method</th>
+                                    <th style="text-align:center"> Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null )
+                                {
+                                    @foreach (var order in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @order.ID
+                                            </td>
+                                          @*  <td> @order.CustomerName </td>*@
+                                            <td>
+                                                @order.OrderDate
+                                            </td>
+                                            <td> <label class="badge badge-danger">@order.Status</label></td>
+                                            <td>$@order.Total</td>
+                                            <td> <label class="alert alert-infor">@order.PaymentMethod</label></td>
+                                            <td class="d-flex justify-content-center" style="padding:25px 0px">
+                                                <a style="height:fit-content" href="@Url.Action("ViewDetail","Order", new{id = order.ID})" type="button"
+                                           class="btn btn-gradient-success btn-rounded btn-block">View detail</a>
+                                            @using (Html.BeginForm("RemoveConfirmed", "Order", new { id = order.ID }, FormMethod.Post))
+                                                {
+                                                    <input type="submit" class="btn btn-gradient-warning btn-rounded btn-block"
+                                               onclick="return confirm('Are you sure you want to remove?')" value="Remove" />
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                    }else{
+                                        <tr>No record found</tr>
+                                    }
+                                    </tbody>
+                        </table>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md12">
+                                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index","Order", new { page = page, status = ViewBag.StoredStatus, sortNew = ViewBag.StoredNew }))
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+

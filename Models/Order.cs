@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Assignment.DataAccess;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Assignment.Models
@@ -10,7 +11,7 @@ namespace Assignment.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
         [Required]
-        public int UserID { set; get; }
+        public string UserID { set; get; }
 
         [Column(TypeName = "Money")]
         public decimal? Total { set; get; }
@@ -31,7 +32,7 @@ namespace Assignment.Models
         public string? Note { set; get; }
 
         [ForeignKey("UserID")]
-        public virtual User User { get; set; }
-        public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
+        public virtual AppUser? User { get; set; }
+        public virtual IEnumerable<OrderDetail>? OrderDetails { set; get; } = new List<OrderDetail>();
     }
 }

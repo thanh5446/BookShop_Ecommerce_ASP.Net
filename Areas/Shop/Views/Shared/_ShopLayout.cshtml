@@ -30,7 +30,8 @@
             </div>
             <ul class="navbar-nav navbar-nav-right" style="margin-right: 100px;">
                 <li class="nav-item nav-profile dropdown">
-                    <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false" style="padding-right: 25px;">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false" style="padding-right: 25px;">
                         <div class="nav-profile-img">
                             <img src="~/shop/images/faces/face1.jpg" alt="image">
                             <span class="availability-status online"></span>
@@ -50,7 +51,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item nav-profile">
-                    <a href="#" class="nav-link">
+                    <a class="nav-link" asp-area="Shop" asp-controller="Profile" asp-action="Index">
                         <div class="nav-profile-image">
                             <img src="~/shop/images/faces/face1.jpg" alt="profile">
                             <span class="login-status online"></span>
@@ -64,25 +65,25 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" asp-area="Shop" asp-controller="Home" asp-action="Index">
                         <span class="menu-title">Dashboard</span>
                         <i class="fa-solid fa-house" style="padding-left: 120px;"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="category.html">
+                    <a class="nav-link" asp-area="Shop" asp-controller="Category" asp-action="Index">
                         <span class="menu-title">Category</span>
                         <i class="fa-solid fa-tags" style="padding-left: 128px;"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="category.html">
+                    <a class="nav-link" asp-area="Shop" asp-controller="Product" asp-action="Index">
                         <span class="menu-title">Products</span>
                         <i class="fa-solid fa-book" style="padding-left: 130px;"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/forms/basic_elements.html">
+                    <a class="nav-link" asp-area="Shop" asp-controller="Order" asp-action="Index">
                         <span class="menu-title">Orders</span>
                         <i class="fa-solid fa-cart-shopping" style="padding-left: 140px;"></i>
                     </a>
@@ -102,8 +103,8 @@
 
         <footer class="footer">
             <div class="container-fluid d-flex justify-content-between">
-                <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © bootstrapdash.com 2021</span>
-                <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin template</a> from Bootstrapdash.com</span>
+                <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Bookshop © 2023 </span>
+                <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"> Creating bookshop admin template</a> from Thien</span>
             </div>
         </footer>
         <!-- partial -->
@@ -113,8 +114,10 @@
 
     <script src="./~/shop/js/hoverable-collapse.js"></script>
     <script src="./~/shop/js/misc.js"></script>
-    @await Component.InvokeAsync("NotiF")
-    @await RenderSectionAsync("Script",required:false)
+  
+   @await RenderSectionAsync("Scripts", required: false)
+    @await Component.InvokeAsync("Notyf")
+
     <!-- endinject -->
 </body>
 </html>

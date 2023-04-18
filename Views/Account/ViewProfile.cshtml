@@ -1,0 +1,115 @@
+﻿@model Assignment.DataAccess.AppUser
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+#set-form{
+    padding-bottom: 100px;
+}
+ .form-profile{
+        background-color: rgb(159, 128, 94);
+ }
+    .avatar{
+        border: 1px solid rgb(95,4,4);
+        border-radius: 100%;       
+    }
+    .wrap-avatar{
+        top: 40px;
+    }
+
+    .form-control {
+        line-height: 2;
+    }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #BA68C8
+        }
+
+    .profile-button {
+        background: rgb(144, 46, 46);
+        box-shadow: none;
+        border: none
+    }
+
+        .profile-button:hover {
+            background: #682773
+        }
+
+        .profile-button:focus {
+            background: #682773;
+            box-shadow: none
+        }
+
+        .profile-button:active {
+            background: #682773;
+            box-shadow: none
+        }
+
+    .back:hover {
+        color: #682773;
+        cursor: pointer
+    }
+
+    .labels {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .add-experience:hover {
+        background: #BA68C8;
+        color: #fff;
+        cursor: pointer;
+        border: solid 1px #BA68C8
+    }
+</style>
+
+<div id="PlaceHolderHere"></div>
+<div style="margin-top: 7rem !important" class="container rounded bg-white mt-5 mb-5" id="set-form">
+    <div class="row form-profile">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-6 wrap-avatar">
+                @if (Model.ProfilePicture == null)
+                {
+                    <img class="mt-5 avatar" src="~/shop/images/faces-clipart/avatar.png" style="width: 90%;">
+                }else{
+                    <img class="mt-5 avatar" src="~/images/avatars/@Model.ProfilePicture" style="width: 90%;">
+                }
+                <span class="font-weight-bold">Batman</span><span class="text-black-50">batman@gmail.com</span><span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Detail</h4>
+                </div>
+                <div class="row mt-3">
+                    <div style="margin-bottom: 24px;" class="col-md-12">
+                        <label class="labels">Full name</label><input type="text" class="form-control" value="@Model.FullName" disabled>
+                    </div>
+                    <div style="margin-bottom: 24px;" class="col-md-12">
+                        <label class="labels">Home address</label><input type="text" class="form-control" value="@Model.Location" disabled>
+                    </div>
+                    <div style="margin-bottom: 24px;" class="col-md-12">
+                        <label class="labels">Email</label><input type="text" class="form-control" value="@Model.Email" disabled>
+                    </div>
+                    <div style="margin-bottom: 24px;" class="col-md-12">
+                        <label class="labels">Phone Number</label><input type="text" class="form-control" value="@Model.PhoneNumber" disabled>
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+                    <a class="btn btn-primary profile-button"
+                    type="submit" asp-action="EditProfile" asp-controller="Account">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" style="padding-left: 0; padding-right: 0;">
+            <img src="https://mobimg.b-cdn.net/v3/fetch/13/139f4908b5a43e7c387965864b18bbaa.jpeg?h=900&r=0.5" alt="login form"
+                 class="img-fluid" style="height: 100%;" />
+        </div>
+    </div>
+</div>
+ 

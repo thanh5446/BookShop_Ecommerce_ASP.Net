@@ -18,7 +18,7 @@ namespace Assignment.Models
         [Required(ErrorMessage = "Price cannot be empty !!")]
         public decimal Price { set; get; }
         [Column(TypeName = "Money")]
-        public decimal? DiscountPrice { set; get; }
+        public decimal DiscountPrice { set; get; }
 
         [StringLength(250)]
         [Required(ErrorMessage = "Description cannot be empty !!")]
@@ -43,6 +43,6 @@ namespace Assignment.Models
         public int CategoryID { set; get; }
 
         [ForeignKey("CategoryID")]
-        public virtual Category Category { get; set; }
+        public virtual Category? Category { get; set; }
     }
 }

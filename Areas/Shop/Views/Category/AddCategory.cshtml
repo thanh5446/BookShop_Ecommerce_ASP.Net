@@ -1,0 +1,50 @@
+﻿@model Assignment.Models.Category
+
+@{
+    ViewData["Title"] = "Category adding";
+    Layout = "~/Areas/Shop/Views/Shared/_Shop2Layout.cshtml";
+}
+
+<div class="col-9 grid-margin stretch-card" style="margin-left: 200px; margin-top: 100px;">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title text-center">Requesting a new category!!!</h4>
+            <p class="card-description"> Input information below </p>
+      
+            @using (Html.BeginForm("AddCategory", "Category", new { area = "Shop" }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                // @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="forms-sample">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Alias, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Alias, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Alias, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                </div>
+            }
+
+        </div>
+        <form asp-area="Shop" asp-controller="Category" asp-action="Index" method="post">
+            <button type="submit" class="btn btn-primary" style="width:100%">Cancel</button>
+        </form>
+    </div>
+</div>

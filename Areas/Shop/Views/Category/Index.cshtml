@@ -1,0 +1,106 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@model IPagedList<Assignment.Models.Category>
+
+@{
+    ViewData["Title"] = "Category Index";
+    Layout = "~/Areas/Shop/Views/Shared/_ShopLayout.cshtml";
+}
+
+
+
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="d-flex mb-3">
+                <div class="me-auto p-2">
+                <form asp-area="Shop" asp-controller="Category" asp-action="Index">
+                    <div class="input-group">
+                        <div class="form-outline">
+                            <input type="search" name="search" id="form1" class="form-control" placeholder="Search category" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                     </form>
+                </div>
+                <div class="p-2">
+                    <form asp-area="Shop" asp-controller="Category" asp-action="AddCategory" method="post">
+                        <button type="submit" class="btn btn-primary">Request new category</button>
+                    </form> 
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="sidebar-actions">
+            @using (Html.BeginForm("Index", "Category", FormMethod.Get))
+            {
+                <p style="align-content:center">
+                    @Html.DropDownList("status", (SelectList)ViewBag.StatusList, "--Sorting by Status--",new { @class = "btn btn-danger dropdown-toggle text-center" })
+                    @Html.DropDownList("sortNew",(SelectList)ViewBag.NewSort, "--Sorting by Time--", new { @class = "btn btn-danger dropdown-toggle" })
+                    <input type="submit" class="btn btn-gradient-primary" value="Filter" />
+                </p>
+            }
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Category Table</h4>
+                        
+                        <table id="table-container" class="table table-striped" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th> ID </th>
+                                    <th> Category Name </th>
+                                    <th> Description </th>
+                                    <th> Status </th>
+                                <th style="text-align:center"> Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null )
+                                {
+                                    @foreach (var cat in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(c => cat.ID)
+                                            </td>
+                                            <td>  @Html.DisplayFor(c => cat.Name) </td>
+                                            <td>
+                                                @Html.DisplayFor(c => cat.Description)
+                                            </td>
+                                            <td> <label class="badge badge-danger"> @Html.DisplayFor(c => cat.Status)</label></td>
+                                        <td class="d-flex justify-content-center" style="gap:20px">
+                                                <a href="@Url.Action("EditCategory","Category",new {id = cat.ID})" type="button"
+                                                class="btn btn-gradient-success btn-rounded btn-block">Edit</a>     
+                                                @using (Html.BeginForm("RemoveConfirmed", "Category", new { id = cat.ID }, FormMethod.Post)){
+                                                    <input type="submit" class="btn btn-gradient-warning btn-rounded btn-block"
+                                                    onclick="return confirm('Are you sure you want to remove?')" value="Remove" />
+                                                }             
+                                            </td>
+                                        </tr>
+                                    }
+                                }else{
+                                    <tr>No record found</tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md12">
+                                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index","Category", new { page = page, status = ViewBag.StoredStatus, sortNew = ViewBag.StoredNew }))
+                                </div>
+                            </div>
+                        </div>
+                    </div>              
+                </div>
+            </div>
+        </div>
+    

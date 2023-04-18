@@ -1,0 +1,74 @@
+﻿@model Assignment.Models.BookVM
+
+@{
+    ViewData["Title"] = "Adding Product";
+    Layout = "~/Areas/Shop/Views/Shared/_Shop2Layout.cshtml";
+}
+
+<div class="col-9 grid-margin stretch-card" style="margin-left: 200px; margin-top: 100px;">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title text-center">Add a new product</h4>
+            <p class="card-description">Input the information below </p>
+            <form class="forms-sample" asp-area = "Shop" asp-controller="Product" asp-action="AddProduct" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Name">Name Book</label>
+                    <input type="text" class="form-control" asp-for="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price">Price</label>
+                    <input type="number" class="form-control" asp-for="Price">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DiscountPrice">DiscountPrice</label>
+                    <input type="number" class="form-control" asp-for="DiscountPrice">
+                    <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quantity">Quantity</label>
+                    <input type="number" class="form-control" asp-for="Quantity">
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Author">Author</label>
+                    <input type="text" class="form-control" asp-for="Author">
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Category">Category</label>
+                    <select class="form-control" asp-for="CategoryID" asp-items="ViewBag.categoryList">
+                        <option value="" disabled selected>Select a category</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Status">Status</label>
+                    <select class="form-control" asp-for="Status">
+                        <option value="" disabled selected>Select a status</option>
+                        <option value="InStock">InStock</option>
+                        <option value="OutOfStock">OutOfStock</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Image">Upload Image</label>
+                    <br />
+                    <span class="input-group-append">
+                    <input type="file" class="file-upload-browse btn btn-gradient-primary" asp-for="Image">
+                    </span>
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description">Description</label>
+                    <input type="text" class="form-control" asp-for="Description">
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+             
+            </form>
+        </div>
+        <form asp-area="Shop" asp-controller="Product" asp-action="Index" method="post">
+            <button type="submit" class="btn btn-primary" style="width:100%">Cancel</button>
+        </form>
+    </div>
+</div>

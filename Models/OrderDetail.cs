@@ -15,16 +15,17 @@ namespace Assignment.Models
         public int OrderID { get; set; }
         [Required]
         public int BookID { get; set; }
-
+        [Required]
+        public int ProductID { get; set; }
         [Required]
         public int Quantity { get; set; }
         [Required]
         [Column(TypeName = "Money")]
         public decimal Total { get; set; }
         [ForeignKey("OrderID")]
-        public virtual Order Order { get; set; }
+        public virtual Order? Order { get; set; }
 
         [ForeignKey("ProductID")]
-        public virtual Book Book { get; set; }
+        public virtual Book? Book { get; set; }
     }
 }
