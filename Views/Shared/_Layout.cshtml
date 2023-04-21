@@ -1,9 +1,23 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Assignment.DataAccess
+@using Assignment.Models.DBO
+@using System.Text.Json
+@using Microsoft.AspNetCore.Http
 
 @inject SignInManager<AppUser> SignInManager
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
-    var userName = SignInManager.UserManager.Users.ToString();
+    var session = HttpContextAccessor.HttpContext.Session;
+    var cart = session.GetString(Assignment.Controllers.MyCartController.SessionKeyName);
+    var cartInfor = !string.IsNullOrEmpty(cart) ? JsonSerializer.Deserialize<List<CartViewModel>>(cart):null;
+    var total = 0;
+    decimal money = 0;
+    if(cartInfor != null){
+        foreach(var item in cartInfor){
+            money += item.Quantity * item.Price;
+            total += item.Quantity;
+        }
+    }
 }
 
 <!DOCTYPE html>
@@ -28,7 +42,7 @@
                     <div class="wrapper flex-item">
                         <div class="left">
                             <ul class="flex-item main-links">
-                                <li><a href="#">Blog</a></li>
+                                <li><a asp-action="ViewBlog" asp-controller="Home">Blog</a></li>
                                 <li><a href="#">Featured Products</a></li>
                                 <li><a href="#">wishlist</a></li>
                             </ul>
@@ -100,7 +114,9 @@
                                         <div class="icon-large">
                                             <i class="ri-shopping-cart-line"></i>
                                         </div>
-                                        <div class="fly-item"><span class="item-number">0</span></div>
+                                        <div class="fly-item"><span class="item-number">
+                                                    @total
+                                            </span></div>
 
                                         <!-- <div class="icon-text">
                                             <div class="mini-text">Total</div>
@@ -111,7 +127,7 @@
                                 <li>
                                     <div class="icon-text">
                                         <div class="mini-text">Total</div>
-                                        <div class="cart-total">$0.00</div>
+                                        <div class="cart-total">$@money.ToString("0.##")</div>
                                     </div>
                                 </li>
                             </ul>
@@ -126,12 +142,13 @@
                             <div class="dpt-cat">
                                 <div class="dpt-head">
                                     <div class="main-text">All Departments</div>
-                                    <div class="mini-text mobile-hide">Total 100 Products</div>
+                                  @*  <div class="mini-text mobile-hide">Total 100 Products</div>*@
+                                    @await Component.InvokeAsync("ViewTotalProduct")
                                     <a href="#" class="dpt-trigger mobile-hide">
                                         <i class="ri-menu-3-line ri-xl"></i>
                                     </a>
                                 </div>
-                                <div class="dpt-menu">
+                                @*<div class="dpt-menu">
                                     <ul class="third-links">
                                         <li>
                                             <a href="#">
@@ -174,18 +191,19 @@
                                                 <div class="icon-small"><i class="ri-arrow-right-s-line"></i></div>
                                             </a>
                                         </li>
-                                        </li>
+                                        
                                     </ul>
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                         <div class="right">
                             <div class="search-box">
-                                <form asp-action="ListProduct" asp-controller="Home" class="search" method="get">
+                                <form id="search-form" asp-action="ListProduct" asp-controller="Home" class="search" method="get">
                                     <span class="icon-large"><i class="ri-search-line"></i></span>
                                     <input type="search" placeholder="Search for products" name="search">
                                     <button type="submit">Search</button>
                                 </form>
+                                <div id="search-results-container"></div>
                             </div>
                         </div>
                     </div>
@@ -234,9 +252,40 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            var searchInput = $('#search');
+            var searchResultsContainer = $('#search-results-container');
+
+            searchInput.on('input', function () {
+                var searchQuery = searchInput.val().trim();
+
+                if (searchQuery.length > 0) {
+                    $.ajax({
+                        url: '/Products/Search?search=' + searchQuery,
+                        dataType: 'json',
+                        success: function (data) {
+                            searchResultsContainer.empty(); // clear previous search results
+                            $.each(data, function (index, product) {
+                                var productHtml = '<div class="product">' +
+                                    '<img src="' + product.image + '">' +
+                                    '<h2>' + product.name + '</h2>' +
+                                    '</div>';
+                                searchResultsContainer.append(productHtml);
+                            });
+                        }
+                    });
+                } else {
+                    searchResultsContainer.empty(); // clear search results if search query is empty
+                }
+            });
+        });
+    </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @await Component.InvokeAsync("Notyf")
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

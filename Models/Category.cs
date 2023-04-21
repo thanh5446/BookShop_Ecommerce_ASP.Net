@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Assignment.DataAccess;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Assignment.Models
@@ -25,5 +26,6 @@ namespace Assignment.Models
         public string? Description { set; get; }
 
         public virtual List<Book>? Books { get; set; } = new List<Book>();
+
     }
 }

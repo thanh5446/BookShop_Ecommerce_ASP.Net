@@ -1,4 +1,5 @@
-﻿using Assignment.DataAccess;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Assignment.DataAccess;
 using Assignment.Models;
 using Assignment.Models.DBO;
 using Microsoft.AspNetCore.Authorization;
@@ -14,30 +15,34 @@ namespace Assignment.Controllers
     [Authorize]
     public class MyCartController : Controller
     {
+        private readonly INotyfService _notyf;
         private readonly UserManager<AppUser> _userManager;
-        const string SessionKeyName = "_Cart";
+        public const string SessionKeyName = "_Cart";
         private readonly BookShopDbContext _bookShopDbContext;
 
-        public MyCartController(BookShopDbContext bookShopDbContext, UserManager<AppUser> userManager)
+        public MyCartController(BookShopDbContext bookShopDbContext, UserManager<AppUser> userManager, INotyfService notyfService)
         {
+            _notyf = notyfService;
             _bookShopDbContext = bookShopDbContext;
             _userManager = userManager;
         }
 
-        public IActionResult ViewCart()
+        public async Task<IActionResult> ViewCart()
         {
             var cart = HttpContext.Session.GetObjectFromJson<List<CartViewModel>>(SessionKeyName) ?? new List<CartViewModel>();
-            var userName = User.Identity.Name;
-            var user = _userManager.Users.FirstOrDefault(u => u.FullName == userName);
+            //var userName = User.Identity.Name;
+            //var user = _userManager.Users.FirstOrDefault(u => u.FullName == userName);
+            var userFound = await _userManager.GetUserAsync(User);
+            var user = _userManager.Users.FirstOrDefault(u => u.Email == userFound.Email);
             ViewBag.Account = user;
             return View(cart);
         }
 
         public async Task<IActionResult> AddToCart(int id)
-        {
-
+        {          
             var product = _bookShopDbContext.Book.Where(p => p.ID == id).FirstOrDefault();
-            if(product != null)
+            _notyf.Success("The product " + product.Name + " was added into your cart successfully");
+            if (product != null)
             {
                 var cart = HttpContext.Session.GetObjectFromJson<List<CartViewModel>>(SessionKeyName) ?? new List<CartViewModel>();
                 var cartItem = cart.FirstOrDefault(item => item.ProductId == id);
@@ -114,6 +119,7 @@ namespace Assignment.Controllers
         [HttpPost]
         public async Task<IActionResult> PerformOrder(decimal total, string userId, string payment)
         {
+            _notyf.Success("Your order is required successfully");
             var cart = HttpContext.Session.GetObjectFromJson<List<CartViewModel>>(SessionKeyName);
             Order order = new Order();
             if (ModelState.IsValid)
@@ -143,11 +149,6 @@ namespace Assignment.Controllers
                 _bookShopDbContext.Entry(book).State = EntityState.Modified;
                 }
                 await _bookShopDbContext.SaveChangesAsync();
-                HttpContext.Session.SetObjectAsJson<List<CartViewModel>>(SessionKeyName, null);
-                //foreach (var error in result.DebugView.ShortView)
-                //{
-                //    TempData["msg"] = error;
-                //}
                 return RedirectToAction("ViewCart");
                 //return Json(result.DebugView.LongView);
             }

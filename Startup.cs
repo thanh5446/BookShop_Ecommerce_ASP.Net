@@ -36,14 +36,14 @@ namespace WebApplication4
                         .AddDefaultTokenProviders();
                 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                         .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
-                    options =>
-                    {
-                        options.LoginPath = new PathString("/Account/Login");
-                        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-                        options.LoginPath = $"/Account/Login";                                 
-                        options.LogoutPath = $"/Account/Login";
-                        options.AccessDeniedPath = $"";
-                    });
+                        options =>
+                        {
+                            options.LoginPath = new PathString("/Account/Login");
+                            options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                            options.LoginPath = $"/Account/Login";                                 
+                            options.LogoutPath = $"/Account/Login";
+                            options.AccessDeniedPath = $"";
+                        });
 
                 services.AddDbContext<BookShopDbContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("BookShopConnection")));
@@ -63,6 +63,7 @@ namespace WebApplication4
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         }
 

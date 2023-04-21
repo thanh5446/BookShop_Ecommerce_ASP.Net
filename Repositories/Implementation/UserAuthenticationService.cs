@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Security.Claims;
+using System.Web.Helpers;
 
 
 namespace Assignment.Repositories.Implementation
@@ -16,14 +17,16 @@ namespace Assignment.Repositories.Implementation
         private readonly UserManager<AppUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly BookShopDbContext _bookShopDbContext;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public UserAuthenticationService(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager,
-            RoleManager<IdentityRole> roleManager, BookShopDbContext bookShopDbContext)
+            RoleManager<IdentityRole> roleManager, BookShopDbContext bookShopDbContext, IHttpContextAccessor httpContextAccessor)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.roleManager = roleManager;
             _bookShopDbContext = bookShopDbContext;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<Status> LoginAsync(LoginModel model)
@@ -84,7 +87,7 @@ namespace Assignment.Repositories.Implementation
             AppUser user = new AppUser
             {
                 FullName = model.FullName,
-                UserName = model.FullName.Replace(" ", ""),
+                UserName = model.FullName.Replace(" ",""),
                 Location = model.Address,
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
@@ -141,6 +144,7 @@ namespace Assignment.Repositories.Implementation
         public async Task TaskLogoutAsync()
         {
             await signInManager.SignOutAsync();
+            _httpContextAccessor.HttpContext.Session.SetObjectAsJson<List<CartViewModel>>("_Cart", null);
         }
     }
 }

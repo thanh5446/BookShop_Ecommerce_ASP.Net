@@ -95,7 +95,7 @@
                             <div class="row">
                                 <div class="col-md12">
                                     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-                                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index","Category", new { page = page, status = ViewBag.StoredStatus, sortNew = ViewBag.StoredNew }))
+                                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index","Category", new { page = page, status = ViewBag.StoredStatus, sortNew = ViewBag.StoredNew, search = ViewBag.StoredSearch }))
                                 </div>
                             </div>
                         </div>

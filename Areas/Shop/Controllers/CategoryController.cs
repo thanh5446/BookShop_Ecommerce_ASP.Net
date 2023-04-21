@@ -55,14 +55,15 @@ namespace Assignment.Areas.Shop.Controllers
             ViewBag.StatusList = new SelectList(items, "Text", "Value", status);
 
             List<SelectListItem> sortItems = new List<SelectListItem>();
-            sortItems.Add(new SelectListItem { Text = "New", Value = "New To Old" });
-            sortItems.Add(new SelectListItem { Text = "Old", Value = "Old To New" });
+            sortItems.Add(new SelectListItem { Text = "Descending", Value = "New To Old" });
+            sortItems.Add(new SelectListItem { Text = "Ascending", Value = "Old To New" });
             ViewBag.NewSort = new SelectList(sortItems, "Text", "Value", sortNew);
             if (page == null) page = 1;
             int pageSize = 4;
             int pageNumber = (page ?? 1);
             ViewBag.StoredStatus = status;
             ViewBag.StoredNew = sortNew;
+            ViewBag.StoredSearch = search;
 
             return View(ListCategory.ToPagedList(pageNumber,pageSize));
         }

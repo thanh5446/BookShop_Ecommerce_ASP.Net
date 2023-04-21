@@ -143,7 +143,7 @@ namespace Assignment.Controllers
                 user.PhoneNumber = model.PhoneNumber;
                 user.FullName = model.FullName;
                 user.Location = model.Address;
-                user.UserName = model.FullName.Trim();
+                user.UserName = model.FullName.Replace(" ","");
                 string uniqueFile = null;
                 if (model.ProfilePicture != null)
                 {

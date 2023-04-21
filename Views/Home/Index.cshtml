@@ -1,4 +1,7 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Home page";
+}
+@model IEnumerable<Assignment.Models.Book>
 
 <div class="slider">
     <div class="container2">
@@ -12,7 +15,7 @@
                             </div>
                             <div class="text-content flexcol">
                                 <h3>
-                                    Book Store</h4>
+                                    Book Store</h3>
                                     <h2><span>Come and Get it!</span><br><span>The World of Book</span></h2>
                                     <a href="" class="primary-button">Buy Now</a>
                             </div>
@@ -54,11 +57,15 @@
         <h2>Featured Products</h2>
         <p>Books with high quality reviews from customers</p>
         <div class="pro-container">
+            @foreach (var book in ViewBag.TopProducts)
+            {
             <div class="pro">
-                <img src="~/images/book1.webp">
+                    <div class="wrapper-image">
+                        <img src="~/images/products/@book.Image">
+                    </div>
                 <div class="infor">
-                    <span>Category</span>
-                    <h5>Name Of The Book</h5>
+                    <span>@book.Author</span>
+                    <h5>@book.Name</h5>
                     <div class="star">
                         <i class="ri-star-fill"></i>
                         <i class="ri-star-fill"></i>
@@ -66,58 +73,13 @@
                         <i class="ri-star-fill"></i>
                         <i class="ri-star-fill"></i>
                     </div>
-                    <h4>$15</h4>
+                    <h4>$@book.Price.ToString("0.##")</h4>
                 </div>
-                <button class="new-button">View Detail</button>
+                    <form asp-action="ViewDetail" asp-controller="Home" asp-route-id="@book.ID" method="get">
+                        <button class="new-button">View Detail</button>
+                    </form>
             </div>
-            <div class="pro">
-                <img src="~/images/book1.webp">
-                <div class="infor">
-                    <span>Category</span>
-                    <h5>Name Of The Book</h5>
-                    <div class="star">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                    </div>
-                    <h4>$15</h4>
-                </div>
-                <a href="#"><i class="ri-shopping-cart-line cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="~/images/book1.webp">
-                <div class="infor">
-                    <span>Category</span>
-                    <h5>Name Of The Book</h5>
-                    <div class="star">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                    </div>
-                    <h4>$15</h4>
-                </div>
-                <a href="#"><i class="ri-shopping-cart-line cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="~/images/book1.webp">
-                <div class="infor">
-                    <span>Category</span>
-                    <h5>Name Of The Book</h5>
-                    <div class="star">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                    </div>
-                    <h4>$15</h4>
-                </div>
-                <a href="#"><i class="ri-shopping-cart-line cart"></i></a>
-            </div>
+            }   
         </div>
     </section>
 </div>
@@ -130,68 +92,29 @@
     <h2>Arrival Products</h2>
     <p>New books for you</p>
     <div class="pro-container">
-        <div class="pro">
-            <img src="./images/book3.webp">
-            <div class="infor">
-                <span>Category</span>
-                <h5>Name Of The Book</h5>
-                <div class="star">
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
+        @foreach (var book in ViewBag.NewProducts)
+        {
+            <div class="pro">
+                <div class="wrapper-image">
+                <img src="~/images/products/@book.Image">
                 </div>
-                <h4>$15</h4>
-            </div>
-            <a href="#"><i class="ri-shopping-cart-line cart"></i></a>
-        </div>
-        <div class="pro">
-            <img src="~/images/book3.webp">
-            <div class="infor">
-                <span>Category</span>
-                <h5>Name Of The Book</h5>
-                <div class="star">
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
+                <div class="infor">
+                    <span>@book.Author</span>
+                    <h5>@book.Name</h5>
+                    <div class="star">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                    </div>
+                    <h4>$@book.Price.ToString("0.##")</h4>
                 </div>
-                <h4>$15</h4>
+                <form asp-action="ViewDetail" asp-controller="Home" asp-route-id="@book.ID" method="get">
+                    <button class="new-button">View Detail</button>
+                </form>
             </div>
-            <a href="#"><i class="ri-shopping-cart-line cart"></i></a>
-        </div>
-        <div class="pro">
-            <img src="~/images/book3.webp">
-            <div class="infor">
-                <span>Category</span>
-                <h5>Name Of The Book</h5>
-                <div class="star">
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                </div>
-                <h4>$15</h4>
-            </div>
-            <a href="#"><i class="ri-shopping-cart-line cart"></i></a>
-        </div>
-        <div class="pro">
-            <img src="~/images/book3.webp">
-            <div class="infor">
-                <span>Category</span>
-                <h5>Name Of The Book</h5>
-                <div class="star">
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                </div>
-                <h4>$15</h4>
-            </div>
-            <a href="#"><i class="ri-shopping-cart-line cart"></i></a>
-        </div>
+        }
+    </div>
+
 </section>

@@ -1,4 +1,5 @@
-﻿using Assignment.DataAccess;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Assignment.DataAccess;
 using Assignment.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,17 +11,18 @@ namespace Assignment.Controllers
 {
     public class HomeController : Controller
     {
-       // private readonly ILogger<HomeController> _logger;
+        private readonly INotyfService _notyf;
         private readonly BookShopDbContext _bookShopDbContext;
-        public HomeController( BookShopDbContext bookShopDbContext)
+        public HomeController( BookShopDbContext bookShopDbContext, INotyfService notyfService)
         {
-           // _logger = logger;
+           _notyf = notyfService;
             _bookShopDbContext = bookShopDbContext;
         }
 
         [Route("ListProduct")]
         public IActionResult ListProduct(int? page, string? search, int? categoryId, string? sortPrice)
         {
+            _notyf.Success("All your desired products");
             var categories = _bookShopDbContext.Category.ToList();
             var products = _bookShopDbContext.Book.Where(p => p.Status.Equals("InStock"));
             if (!string.IsNullOrEmpty(search))
@@ -46,7 +48,7 @@ namespace Assignment.Controllers
             var productList = products.ToList();
             ViewBag.listProducts = productList;
             if (page == null) page = 1;
-            int pageSize = 1;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
 
             List<SelectListItem> items = new List<SelectListItem>();
@@ -60,14 +62,33 @@ namespace Assignment.Controllers
             return View(productList.ToPagedList(pageNumber, pageSize));
         }
 
+        [HttpGet]
+        [Route("Products/Search")]
+        public JsonResult SearchProducts(string search)
+        {
+            var products = _bookShopDbContext.Book
+              .Where(p => p.Name.Contains(search))
+              .ToList();
+            return Json(products);
+        }
+
         public IActionResult Index()
         {
+            _notyf.Custom("Welcome to my book-store", 5, "#B600FF", "fa fa-home");
+            ViewBag.TopProducts = _bookShopDbContext.OrderDetail
+                .Join(_bookShopDbContext.Book, od => od.ProductID, p => p.ID, (od, p) => new { OrderDetail = od, Book = p })
+                .GroupBy(od => od.OrderDetail.ProductID)
+                .OrderByDescending(q => q.Sum(o => o.OrderDetail.Quantity))
+                .Take(4).Select(g => g.FirstOrDefault().Book);
+
+            ViewBag.NewProducts = _bookShopDbContext.Book.OrderByDescending(i => i.ID).Take(4).ToList();
             return View();
         }
 
         [Route("GetNewProducts")]
         public IActionResult GetNewProducts(int? page, string? search, int? categoryId, string? sortPrice)
         {
+            _notyf.Success("All new products in the store");
             var categories = _bookShopDbContext.Category.ToList();
             var products = _bookShopDbContext.Book.OrderByDescending(p => p.ID).Where(p => p.Status.Equals("InStock"));
             if (!string.IsNullOrEmpty(search))
@@ -124,6 +145,10 @@ namespace Assignment.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult ViewBlog()
+        {
+            return View();
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -55,6 +55,7 @@ ul {
 img {
     max-width: var(--percent100);
     vertical-align: middle;
+    object-fit: cover;
 }
 
 strong {
@@ -86,6 +87,45 @@ h6 {
     margin: 0 auto;
     padding: 0 0.938em;
     position: relative;
+}
+.container-guide {
+    margin: 0 auto;
+    padding: 0 0.938em;
+    position: relative;
+    max-width: 78%;
+}
+section {
+    margin-bottom: 50px;
+}
+
+    .guide-step h2 {
+        margin-bottom: 20px;
+        color: #7c899a
+    }
+
+.guide-step p {
+    margin-bottom: 10px;
+}
+
+.guide-step div {
+    max-width: 90%;
+    position: relative;
+    margin: 0 auto;
+}
+
+.step img {
+    box-shadow: 0 0 0 1px #e67f7f, 0 0 0 2px #ba0c65;
+}
+
+.step p{
+    margin-top: 15px;
+    font-size: 22px;
+    color: #111;
+}
+
+.uncover{
+    margin-left: 60px;
+    color: #ff6b6b;
 }
 
 .column {
@@ -622,13 +662,14 @@ form {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-image: url(".~/images/banner3.png");
+    background-image: url("../images/banner3.png");
     width: 100%;
     height: 35vh;
     background-size: cover;
     background-position: left;
     border: 1px solid var(--light-text-color);
     box-shadow: 15px 0 15px 0 rgba(214, 16, 16, 0.3);
+    margin-left: 10px;
 }
 
     .banner h4 {
@@ -793,14 +834,24 @@ form {
     background: rgb(176, 181, 181);
     padding: 20px 0px;
     width: 900px;
-    margin-left: 200px;
+    margin-left: 300px;
     
 }
-.box-products {
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 0 0.938em;
-}
+
+    .sidebar-actions p{
+        margin-left:115px;
+    }
+        .sidebar-actions p input{
+            margin-left: 50px;
+            width: 110px;
+            height: 45px;
+        }
+
+        .box-products {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 0.938em;
+        }
 
 .pagination li {
     display: block;
@@ -946,6 +997,11 @@ form {
     color: #0dacaa;
 }
 
+.wrapper-imag {
+    width: 282px;
+    height: 425px;
+    position: relative;
+}
 
 
 .product_description {

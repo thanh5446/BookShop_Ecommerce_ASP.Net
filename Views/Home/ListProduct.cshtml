@@ -11,9 +11,9 @@
             @using (Html.BeginForm("ListProduct", "Home", FormMethod.Get))
             {
                 <p>
-                    Category: @Html.DropDownList("categoryId", (SelectList)ViewBag.CategoryList, "-- All Categories --")
-                    Sorting by price: @Html.DropDownList("sortPrice",(SelectList)ViewBag.PriceSort, "--Sorting by Price")
-                    <input type="submit" value="Filter" />
+                    Sorting by category: @Html.DropDownList("categoryId", (SelectList)ViewBag.CategoryList, "-- All Categories --",new { @class = "btn btn-secondary dropdown-toggle text-center" })
+                    Sorting by price: @Html.DropDownList("sortPrice",(SelectList)ViewBag.PriceSort, "--Order Price",new { @class = "btn btn-secondary dropdown-toggle text-center" })
+                    <input class="btn btn-dark" type="submit" value="Filter" />
                 </p>
             }
         </div>
@@ -48,7 +48,7 @@
                                     <i class="ri-star-fill"></i>
                                     <i class="ri-star-fill"></i>
                                 </div>
-                                <h4>$@book.Price</h4>
+                                <h4>$@book.Price.ToString("0.##")</h4>
                             </div>
 
                              @* @using (Html.BeginForm("ViewDetail", "Home", new {id = book.ID})){
