@@ -9,7 +9,7 @@
 }
 
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
 @*<div class="main-panel">*@
     <div class="content-wrapper">
         <div class="row">
@@ -44,7 +44,7 @@
             <div class="col-lg-112 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Book Table</h4>
+                        <h4 class="card-title">Order Table</h4>
                         <table class="table table-striped" style="width:100%;">
                             <thead>
                                 <tr>
@@ -70,7 +70,7 @@
                                             <td>
                                                 @order.OrderDate
                                             </td>
-                                            <td> <label class="badge badge-danger">@order.Status</label></td>
+                                            <td> <label class="badge">@order.Status</label></td>
                                             <td>$@order.Total</td>
                                             <td> <label class="alert alert-infor">@order.PaymentMethod</label></td>
                                             <td class="d-flex justify-content-center" style="padding:25px 0px">
@@ -102,3 +102,20 @@
             </div>
         </div>
 
+    <script>
+        $(document).ready(function () {
+            $('.badge').each(function () {
+                var content = $(this).html();
+
+                if (content === 'Pending') {
+                    $(this).addClass('badge-danger');
+                } else if (content === 'Processing') {
+                    $(this).addClass('badge-success');
+                } else if (content === 'Delivered') {
+                    $(this).addClass('badge-primary');
+                }else{
+                    $(this).addClass('badge-secondary')
+                }
+            });
+        });
+    </script>

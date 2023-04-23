@@ -18,12 +18,15 @@ namespace Assignment.Controllers
         private readonly IUserAuthenticationService _service;
         private readonly UserManager<AppUser> _userManager;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly BookShopDbContext _bookShopDbContext;
 
-        public AccountController(IUserAuthenticationService service, UserManager<AppUser> userManager, IWebHostEnvironment hostEnvironment)
+        public AccountController(IUserAuthenticationService service, UserManager<AppUser> userManager,
+            IWebHostEnvironment hostEnvironment, BookShopDbContext bookShopDbContext)
         {
             _service = service;
             _userManager = userManager;
             _hostEnvironment = hostEnvironment;
+            _bookShopDbContext = bookShopDbContext;
         }
 
         public IActionResult Register()
@@ -39,7 +42,7 @@ namespace Assignment.Controllers
             {
                 return View(model);
             }
-            model.Role = "Shop";
+            model.Role = "Admin";
             var result = await _service.RegistrationAsync(model);
             TempData["msg"] = result.Message;
             return View("Login");
@@ -56,9 +59,17 @@ namespace Assignment.Controllers
         {
             if (ModelState.IsValid)
             {
+                var checkUser = await _userManager.FindByEmailAsync(user.Email);
                 var result = await _service.LoginAsync(user);
                 if(result.StatusCode == 1)
                 {
+                    if(await _userManager.IsInRoleAsync(checkUser, "Shop"))
+                    {
+                        return RedirectToAction("Index","Home", new { area = "Shop" });
+                    }else if(await _userManager.IsInRoleAsync(checkUser, "Admin"))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -104,6 +115,7 @@ namespace Assignment.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            ViewBag.Orders = _bookShopDbContext.Order.Where(o => o.UserID == user.Id).ToList();
             return View(user);
         }
 

@@ -62,7 +62,7 @@ namespace Assignment.Controllers
                 }
                 else
                 {
-                    if (product.Quantity < cartItem.Quantity)
+                    if (product.Quantity > cartItem.Quantity)
                     {
                         cartItem.Quantity += 1;
                     }

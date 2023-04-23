@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VeCM170vwwpm13rJY5JUc1KLsWiGjog3+ekYfNRfPEQ=",
+  "Hash": "Qx2TIfYuJMoPz6Ha4nEOuROKHz1Q/6CWAAgAmYJHpuQ=",
   "Source": "Assignment",
   "BasePath": "_content/Assignment",
   "Mode": "Default",
@@ -1564,6 +1564,23 @@
       "OriginalItemSpec": "wwwroot\\images\\Paypal.png"
     },
     {
+      "Identity": "D:\\studying\\Application_development\\Assignment\\Assignment\\wwwroot\\images\\products\\02f96068-64a3-4e17-a6bf-cfb9433e9d9d.jpg",
+      "SourceId": "Assignment",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\studying\\Application_development\\Assignment\\Assignment\\wwwroot\\",
+      "BasePath": "_content/Assignment",
+      "RelativePath": "images/products/02f96068-64a3-4e17-a6bf-cfb9433e9d9d.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\02f96068-64a3-4e17-a6bf-cfb9433e9d9d.jpg"
+    },
+    {
       "Identity": "D:\\studying\\Application_development\\Assignment\\Assignment\\wwwroot\\images\\products\\10d54a22-f1f4-44d2-874e-cf15c35658a5.jpg",
       "SourceId": "Assignment",
       "SourceType": "Discovered",
@@ -1783,6 +1800,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\d4fb814c-439c-4c05-b4ea-575018303fc6.jpg"
+    },
+    {
+      "Identity": "D:\\studying\\Application_development\\Assignment\\Assignment\\wwwroot\\images\\products\\dbd8c707-3fc7-4a70-bef8-405182a99d12.jpg",
+      "SourceId": "Assignment",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\studying\\Application_development\\Assignment\\Assignment\\wwwroot\\",
+      "BasePath": "_content/Assignment",
+      "RelativePath": "images/products/dbd8c707-3fc7-4a70-bef8-405182a99d12.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\dbd8c707-3fc7-4a70-bef8-405182a99d12.jpg"
     },
     {
       "Identity": "D:\\studying\\Application_development\\Assignment\\Assignment\\wwwroot\\images\\register.png",

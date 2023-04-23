@@ -11,6 +11,14 @@ namespace Assignment.DataAccess
         {
             Database.EnsureCreated();
         }
+
+        public DbSet<User> User { get; set; }
+        public DbSet<AppUser> AppUser { get; set; }
+        public DbSet<Book> Book { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
+
         //protected override void OnModelCreating(ModelBuilder builder)
         //{
 
@@ -25,14 +33,5 @@ namespace Assignment.DataAccess
         //        }
         //    }
         //}
-
-        public DbSet<User> User { get; set; }
-        public DbSet<AppUser> AppUser { get; set; }
-        public DbSet<Book> Book { get; set; }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<Order> Order { get; set; }
-        public DbSet<OrderDetail> OrderDetail { get; set; }
-
-
     }
 }

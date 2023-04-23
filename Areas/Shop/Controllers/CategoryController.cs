@@ -13,7 +13,7 @@ using static NuGet.Packaging.PackagingConstants;
 namespace Assignment.Areas.Shop.Controllers
 {
     [Area("Shop")]
-    //[Authorize(Roles = "Shop")]
+    [Authorize(Roles = "Shop")]
     public class CategoryController : Controller
     {
         private readonly BookShopDbContext _bookShopDbContext;

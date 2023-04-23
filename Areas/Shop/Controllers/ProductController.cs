@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using X.PagedList;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Assignment.Areas.Shop.Controllers
 {
     [Area("Shop")]
+    [Authorize(Roles = "Shop")]
     public class ProductController : Controller
     {
         private readonly BookShopDbContext _bookShopDbContext;

@@ -1,10 +1,12 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Assignment.DataAccess;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment.Areas.Shop.Controllers
 {
     [Area("Shop")]
+    [Authorize(Roles = "Shop")]
     public class HomeController : Controller
     {
         private readonly BookShopDbContext _bookShopDbContext;

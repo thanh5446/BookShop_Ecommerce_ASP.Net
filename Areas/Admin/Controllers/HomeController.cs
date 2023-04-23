@@ -7,13 +7,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Assignment.Models.DBO;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
-using System.Text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNet.Identity.EntityFramework;
 using IdentityRole = Microsoft.AspNetCore.Identity.IdentityRole;
 
 namespace Assignment.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]
+
     public class HomeController : Controller
     {
         private readonly UserManager<AppUser> _userManager;

@@ -7,10 +7,12 @@ using X.PagedList;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Assignment.Models.DBO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment.Areas.Shop.Controllers
 {
     [Area("Shop")]
+    [Authorize(Roles = "Shop")]
     public class OrderController : Controller
     {
         public INotyfService _notyfService { get; }

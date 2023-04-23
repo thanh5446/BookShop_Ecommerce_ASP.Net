@@ -1,6 +1,7 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Assignment.DataAccess;
 using Assignment.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using X.PagedList;
@@ -8,6 +9,7 @@ using X.PagedList;
 namespace Assignment.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private readonly BookShopDbContext _bookShopDbContext;

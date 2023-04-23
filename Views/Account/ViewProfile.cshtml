@@ -112,4 +112,65 @@
         </div>
     </div>
 </div>
- 
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title" style="text-align:center">Your orders</h4>
+            </div>
+            @{
+                var id = 0;
+            }
+            @if(ViewBag.Orders == null){
+                <p style="text-align:center">You haven't ordered anything</p>
+            }else{
+                 <table class="table table-striped" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th> ID</th>
+                                    <th> Order Date </th>
+                                    <th> Status </th>
+                                    <th> Total </th>
+                                    <th> Payment Method</th>
+                                </tr>
+                            </thead>
+                            <tbody>                          
+                                 @foreach(var item in ViewBag.Orders){
+                                 id++;
+                                 <tr>
+                                    <td>
+                                        @id
+                                    </td>
+                                    <td>
+                                        @item.OrderDate
+                                    </td>
+                                <td> <label>@item.Status</label></td>
+                                    <td>$@item.Total.ToString("0.##")</td>
+                                    <td>@item.PaymentMethod</td>
+                                 </tr>
+                                    }                           
+                            </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
+<script>
+    $(document).ready(function () {
+        $('.badge').each(function () {
+            var content = $(this).html();
+
+            if (content === 'Pending') {
+                $(this).addClass('badge-danger');
+            } else if (content === 'Processing') {
+                $(this).addClass('badge-success');
+            } else if (content === 'Delivered') {
+                $(this).addClass('badge-primary');
+            } else {
+                $(this).addClass('badge-secondary')
+            }
+        });
+    });
+</script>
