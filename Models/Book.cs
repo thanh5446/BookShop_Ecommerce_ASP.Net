@@ -20,7 +20,7 @@ namespace Assignment.Models
         [Column(TypeName = "Money")]
         public decimal DiscountPrice { set; get; }
 
-        [StringLength(250)]
+       [StringLength(500)]
         [Required(ErrorMessage = "Description cannot be empty !!")]
         public string Description { set; get; }
 

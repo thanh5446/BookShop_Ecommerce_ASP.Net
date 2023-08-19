@@ -74,7 +74,7 @@ namespace Assignment.Controllers
 
         public IActionResult Index()
         {
-            _notyf.Custom("Welcome to my book-store", 5, "#B600FF", "fa fa-home");
+            _notyf.Custom("Welcome to my book-store", 2, "#B600FF", "fa fa-home");
             ViewBag.TopProducts = _bookShopDbContext.OrderDetail
                 .Join(_bookShopDbContext.Book, od => od.ProductID, p => p.ID, (od, p) => new { OrderDetail = od, Book = p })
                 .GroupBy(od => od.OrderDetail.ProductID)
@@ -114,7 +114,7 @@ namespace Assignment.Controllers
             var productList = products.ToList();
             ViewBag.listProducts = productList;
             if (page == null) page = 1;
-            int pageSize = 1;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
 
             List<SelectListItem> items = new List<SelectListItem>();

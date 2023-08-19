@@ -61,7 +61,11 @@
                                     <li><a asp-action="Logout" asp-controller="Account">Logout </a></li>
                                         @if (User.IsInRole("Shop"))
                                         {
-                                        <li><a asp-area="Shop" asp-action="Index" asp-controller="Home">Shop Management </a></li>
+                                        <li><a asp-area="Shop" asp-action="Index" asp-controller="Category">Shop Management </a></li>
+                                        }
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                        <li><a asp-area="Admin" asp-action="Index" asp-controller="Home">Admin Management </a></li>
                                         }
                                 }
                                 <li>
@@ -86,7 +90,7 @@
                         <a href="#" class="trigger desktop-hide"><span class="i ri-menu-2-line"></span></a>
                         <div class="left flex-item">
                             <div class="logo"><a asp-action="ListProduct" asp-controller="Home" style="cursor:pointer">
-                                <span class="circle">WPFStore</span></a></div>
+                                <span class="circle">T.HStore</span></a></div>
                             <nav class="mobile-hide">
                                 <ul class="flex-item second-links">
                                     <li><a asp-action="Index" asp-controller="Home">Home</a></li>

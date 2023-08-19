@@ -1,6 +1,4 @@
-﻿
-
-using AspNetCoreHero.ToastNotification;
+﻿using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using Assignment.DataAccess;
 using Assignment.Repositories.Abstraction;

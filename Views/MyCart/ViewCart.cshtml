@@ -68,7 +68,7 @@ background-color: #eae8e8;
                                         @foreach (var item in Model)
                                         {
                                             <hr class="my-4">
-                                             <form asp-action="UpdateQuantity" asp-controller="MyCart" method="post">
+                                            @* <form asp-action="UpdateQuantity" asp-controller="MyCart" method="post">*@
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                 <div class="col-md-2 col-lg-2 col-xl-2">
                                                     <img src="~/images/products/@item.ImageUrl"
@@ -78,16 +78,16 @@ background-color: #eae8e8;
                                                     <h6 class="text-muted">@item.Author</h6>
                                                     <h6 class="text-black mb-0">@item.ProductName</h6>
                                                 </div>
-                                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">           
-                                                    <button class="btn btn-link px-2" type="submit"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                        <button class="btn btn-link px-2" type="submit" onclick="incrementQuantity(this)">
+                                                   @* onclick="this.parentNode.querySelector('input[type=number]').stepDown()">*@
                                                         <i class="fas fa-minus"></i>
                                                     </button> 
-                                                    <input type="hidden" name="id" value="@item.ProductId">
+                                                    <input type="hidden" class="product-id" name="id" value="@item.ProductId">
                                                     <input id="form1" min="1" max="@item.AvailableNum" name="quantity" value="@item.Quantity" type="number"
-                                                   class="form-control form-control-sm" />
-                                                    <button class="btn btn-link px-2"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()" type="submit">
+                                                   class="form-control form-control-sm" data-item-id="@item.ProductId"/>
+                                                    <button class="btn btn-link px-2" type="submit" onclick="decrementQuantity(this)">
+                                                        @*onclick="this.parentNode.querySelector('input[type=number]').stepUp()" type="submit">*@
                                                         <i class="fas fa-plus"></i>
                                                     </button>                               
                                                 </div>
@@ -100,7 +100,7 @@ background-color: #eae8e8;
                                                 </div>
                                                
                                             </div>
-                                            </form>
+                                           @* </form>*@
                                         }
 
                                     }
@@ -241,3 +241,34 @@ background-color: #eae8e8;
         
     </div>
 </div>
+<script>
+    function incrementQuantity(button) {
+        var input = $(button).parent().find('input[type=number]');
+        var value = parseInt(input.val());
+        var productId = $('#product-id').val();
+        value = value + 1;
+        input.val(value);
+        updateCart(input.val(), input.data("item-id"));
+    }
+
+    function decrementQuantity(button) {
+        var input = $(button).parent().find('input[type=number]');
+        var value = parseInt(input.val());
+        if (value > 1) {
+            value = value - 1;
+            input.val(value);
+            updateCart(input.val(), input.data("item-id"));
+        }
+    }
+    function updateCart(quantity, id) {
+    $.ajax({
+            url: "/MyCart/UpdateQuantity",
+            method: 'POST',
+            data: { id: id, quantity: quantity }
+    }).done(function (response) {
+        if (response.success) {
+            alert("Cart updated: id:"+id+" quantity:"+quantity);
+        }
+    });
+}
+</script>

@@ -48,7 +48,7 @@ namespace Assignment.Areas.Admin.Controllers
             }
             _bookShopDbContext.Category.Remove(category);
             _bookShopDbContext.SaveChanges();
-            _notyfService.Success("You successfully remoce a category");
+            _notyfService.Success("You successfully remove a category");
             return RedirectToAction("Index");
         }
     }

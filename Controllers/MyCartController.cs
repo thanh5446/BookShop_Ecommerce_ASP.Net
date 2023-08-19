@@ -73,7 +73,7 @@ namespace Assignment.Controllers
                 }
                 HttpContext.Session.SetObjectAsJson<List<CartViewModel>>(SessionKeyName, cart);
             }
-            return RedirectToAction("ViewCart");
+            return RedirectToAction("ListProduct","Home");
           
         }
 
@@ -95,7 +95,8 @@ namespace Assignment.Controllers
                     TempData["msg"] = "We don't have more than your desire quantity";
                 }
             }
-            return RedirectToAction("ViewCart");
+            return Json(new { success = true });
+           // return RedirectToAction("ViewCart");
         }
 
         public async Task<IActionResult> Clear()
@@ -149,6 +150,7 @@ namespace Assignment.Controllers
                 _bookShopDbContext.Entry(book).State = EntityState.Modified;
                 }
                 await _bookShopDbContext.SaveChangesAsync();
+                HttpContext.Session.SetObjectAsJson<List<CartViewModel>>(SessionKeyName, null);
                 return RedirectToAction("ViewCart");
                 //return Json(result.DebugView.LongView);
             }

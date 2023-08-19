@@ -165,8 +165,20 @@ namespace Assignment.Areas.Shop.Controllers
                     string filePath = Path.Combine(uploadsFolder, uniqueFile);
                     using var fileStream = new FileStream(filePath, FileMode.Create);
                     await bookVM.Image.CopyToAsync(fileStream);
+                    searchBook.Image = uniqueFile;
                 }
-
+                else
+                {
+                    searchBook.Image = searchBook.Image;
+                }
+                searchBook.Name = bookVM.Name;
+                searchBook.Description = bookVM.Description;
+                searchBook.Author = bookVM.Author;
+                searchBook.Price = bookVM.Price;
+                searchBook.DiscountPrice = bookVM.DiscountPrice;
+                searchBook.Quantity = bookVM.Quantity;
+                searchBook.Author = bookVM.Author;
+                searchBook.CategoryID = bookVM.CategoryID;
                 Book book = new Book
                 {
                     ID = bookVM.ID,
@@ -177,15 +189,15 @@ namespace Assignment.Areas.Shop.Controllers
                     Quantity = bookVM.Quantity,
                     Status = bookVM.Status,
                     Author = bookVM.Author,
-                    CategoryID = bookVM.CategoryID,
-                    Image = uniqueFile
+                    CategoryID = bookVM.CategoryID,                  
                 };
+                           
                 var existingBook = _bookShopDbContext.Book.FirstOrDefault(b => b.ID == book.ID);
                 if (existingBook != null)
                 {
                     _bookShopDbContext.Entry(existingBook).State = EntityState.Detached;
                 }
-                _bookShopDbContext.Entry(book).State = EntityState.Modified;
+                _bookShopDbContext.Entry(searchBook).State = EntityState.Modified;
                 await _bookShopDbContext.SaveChangesAsync();
 
                 ViewBag.Image = book.Image;

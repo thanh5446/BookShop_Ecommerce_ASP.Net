@@ -5,172 +5,173 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Assignment
 build_property.RootNamespace = Assignment
-build_property.ProjectDir = D:\studying\Application_development\Assignment\Assignment\
+build_property.ProjectDir = e:\1670-Application Development\Assignment\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = D:\studying\Application_development\Assignment\Assignment
+build_property.MSBuildProjectDirectory = e:\1670-Application Development\Assignment
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Admin/Views/Category/Index.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Admin/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Admin/Views/Home/ChangePassword.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Admin/Views/Home/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Admin/Views/Home/Index.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Admin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Admin/Views/Home/Owners.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Admin/Views/Home/Owners.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxPd25lcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Admin/Views/Shared/Error.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Admin/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Admin/Views/Shared/_ViewStart.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Admin/Views/Shared/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WaWV3U3RhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Admin/Views/_ViewImports.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Admin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Category/AddCategory.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Category/AddCategory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xDYXRlZ29yeVxBZGRDYXRlZ29yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Category/EditCategory.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Category/EditCategory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xDYXRlZ29yeVxFZGl0Q2F0ZWdvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Category/Index.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xDYXRlZ29yeVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Home/Index.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xIb21lXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Order/Index.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Order/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xPcmRlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Order/ViewDetail.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Order/ViewDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xPcmRlclxWaWV3RGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Product/AddProduct.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Product/AddProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xQcm9kdWN0XEFkZFByb2R1Y3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Product/Index.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Product/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xQcm9kdWN0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Product/UpdateProduct.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Product/UpdateProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xQcm9kdWN0XFVwZGF0ZVByb2R1Y3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Shared/Error.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xTaGFyZWRcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Shared/_Shop2Layout.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Shared/_Shop2Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xTaGFyZWRcX1Nob3AyTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Shared/_ShopLayout.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Shared/_ShopLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xTaGFyZWRcX1Nob3BMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/Shared/_ViewStart.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/Shared/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xTaGFyZWRcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Areas/Shop/Views/_ViewImports.cshtml]
+[e:/1670-Application Development/Assignment/Areas/Shop/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2hvcFxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Account/EditProfile.cshtml]
+[e:/1670-Application Development/Assignment/Views/Account/EditProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFZGl0UHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Account/Login.cshtml]
+[e:/1670-Application Development/Assignment/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Account/Register.cshtml]
+[e:/1670-Application Development/Assignment/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Account/ViewProfile.cshtml]
+[e:/1670-Application Development/Assignment/Views/Account/ViewProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxWaWV3UHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Home/Index.cshtml]
+[e:/1670-Application Development/Assignment/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Home/ListProduct.cshtml]
+[e:/1670-Application Development/Assignment/Views/Home/ListProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMaXN0UHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Home/Privacy.cshtml]
+[e:/1670-Application Development/Assignment/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Home/ViewBlog.cshtml]
+[e:/1670-Application Development/Assignment/Views/Home/ViewBlog.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3QmxvZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Home/ViewDetail.cshtml]
+[e:/1670-Application Development/Assignment/Views/Home/ViewDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3RGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/MyCart/ViewCart.cshtml]
+[e:/1670-Application Development/Assignment/Views/MyCart/ViewCart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlDYXJ0XFZpZXdDYXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Shared/Components/ViewTotalProduct/Default.cshtml]
+[e:/1670-Application Development/Assignment/Views/Shared/Components/ViewTotalProduct/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVmlld1RvdGFsUHJvZHVjdFxEZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Shared/Error.cshtml]
+[e:/1670-Application Development/Assignment/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Shared/_AccountLayout.cshtml]
+[e:/1670-Application Development/Assignment/Views/Shared/_AccountLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BY2NvdW50TGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Shared/_EditProfile.cshtml]
+[e:/1670-Application Development/Assignment/Views/Shared/_EditProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FZGl0UHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Shared/_product.cshtml]
+[e:/1670-Application Development/Assignment/Views/Shared/_product.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9wcm9kdWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/_ViewImports.cshtml]
+[e:/1670-Application Development/Assignment/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/_ViewStart.cshtml]
+[e:/1670-Application Development/Assignment/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/studying/Application_development/Assignment/Assignment/Views/Shared/_Layout.cshtml]
+[e:/1670-Application Development/Assignment/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-y18fyt0aqx

@@ -42,7 +42,7 @@ namespace Assignment.Controllers
             {
                 return View(model);
             }
-            model.Role = "Admin";
+            model.Role = "Customer";
             var result = await _service.RegistrationAsync(model);
             TempData["msg"] = result.Message;
             return View("Login");
@@ -65,7 +65,7 @@ namespace Assignment.Controllers
                 {
                     if(await _userManager.IsInRoleAsync(checkUser, "Shop"))
                     {
-                        return RedirectToAction("Index","Home", new { area = "Shop" });
+                        return RedirectToAction("Index","Category", new { area = "Shop" });
                     }else if(await _userManager.IsInRoleAsync(checkUser, "Admin"))
                     {
                         return RedirectToAction("Index", "Home", new { area = "Admin" });

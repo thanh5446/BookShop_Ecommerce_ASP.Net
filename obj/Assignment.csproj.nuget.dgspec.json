@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\studying\\Application_development\\Assignment\\Assignment\\Assignment.csproj": {}
+    "E:\\1670-Application Development\\Assignment\\Assignment.csproj": {}
   },
   "projects": {
-    "D:\\studying\\Application_development\\Assignment\\Assignment\\Assignment.csproj": {
+    "E:\\1670-Application Development\\Assignment\\Assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\studying\\Application_development\\Assignment\\Assignment\\Assignment.csproj",
+        "projectUniqueName": "E:\\1670-Application Development\\Assignment\\Assignment.csproj",
         "projectName": "Assignment",
-        "projectPath": "D:\\studying\\Application_development\\Assignment\\Assignment\\Assignment.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\studying\\Application_development\\Assignment\\Assignment\\obj\\",
+        "projectPath": "E:\\1670-Application Development\\Assignment\\Assignment.csproj",
+        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
+        "outputPath": "E:\\1670-Application Development\\Assignment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,6 +44,10 @@
             "AspNetCoreHero.ToastNotification": {
               "target": "Package",
               "version": "[1.1.0, )"
+            },
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
             },
             "Google.Apis.Core": {
               "target": "Package",
@@ -126,7 +131,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }

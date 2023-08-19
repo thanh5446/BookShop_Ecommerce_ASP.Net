@@ -27,7 +27,7 @@ namespace Assignment.Models
         public int Quantity { set; get; }
 
         [Required(ErrorMessage = "Image cannot be empty !!")]
-        public IFormFile Image { set; get; }
+        public IFormFile? Image { set; get; }
         public String? Image2 { get; set; }
 
         [StringLength(50)]

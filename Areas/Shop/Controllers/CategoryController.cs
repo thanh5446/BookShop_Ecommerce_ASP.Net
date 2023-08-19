@@ -17,7 +17,7 @@ namespace Assignment.Areas.Shop.Controllers
     public class CategoryController : Controller
     {
         private readonly BookShopDbContext _bookShopDbContext;
-        public INotyfService _notyfService { get; }
+        public INotyfService _notyfService;
         public CategoryController(BookShopDbContext bookShopDbContext, INotyfService notyfService)
         {
             _bookShopDbContext = bookShopDbContext;
@@ -71,7 +71,6 @@ namespace Assignment.Areas.Shop.Controllers
         [HttpGet]
         public IActionResult AddCategory()
         {
-            _notyfService.Success("You successfully create a new category");
             return View();
         }
 
@@ -81,7 +80,8 @@ namespace Assignment.Areas.Shop.Controllers
         {
             if(_bookShopDbContext.Category.Any(c => c.Name == category.Name))
             {
-                return Json("This category already existed");
+                _notyfService.Warning("This category has already existed");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -90,7 +90,7 @@ namespace Assignment.Areas.Shop.Controllers
 
                     _bookShopDbContext.Category.Add(category);
                     await _bookShopDbContext.SaveChangesAsync();
-                    _notyfService.Success("You successfully create a new category");
+                    _notyfService.Success("You successfully request a new category");
                     return RedirectToAction("index");
                 }
             }

@@ -63,7 +63,7 @@
                     <label asp-for="Image">upload image</label>
                     <br />
                     <span class="input-group-append">
-                        <input type="file" class="file-upload-browse btn btn-gradient-primary" asp-for="Image">
+                        <input type="file" class="file-upload-browse btn btn-gradient-primary" value="@Model.Image" asp-for="Image">
                     </span>
                     <span asp-validation-for="Image" class="text-danger"></span>
                 </div>
